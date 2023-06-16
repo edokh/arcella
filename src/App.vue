@@ -37,7 +37,9 @@
         <div class="flex text-xs sm:text-sm mt-4 sm:mt-0">
           <div>
             <button
+              @click="share"
               type="button"
+              id="shareBtn"
               class="transition duration-500 dark:hover:bg-gray-600 mr-2 inline-flex items-center rounded-xl bg-[#e4dcd1] px-3 py-1.5 font-semibold hover:bg-[#D4CCC2] dark:bg-gray-700 dark:text-gray-200"
             >
               <svg
@@ -162,10 +164,15 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onBeforeMount } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
+
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+
+onBeforeMount(() => {
+  document.title = 'Arcella' + (' | ' + article.title || '')
+})
 const article = reactive({
   title: 'How to make your Vue Js application faster',
   image: '/Vue.png',
@@ -174,6 +181,23 @@ const article = reactive({
   content:
     'Have you ever wondered why your code seems slow or almost like its lagging when it runs on your user devices? Have you ever tested your Vue JS-powered application on your development machine and it runs so fast but your users seem to be complaining about the speed of your web app or having a bad user experience?\nWell if your answer is Yes or maybe a no but you want to learn how to prevent your Vue Js application from being slow, sit back and study the tips we share to help make your Vue Js application as fast and lightweight as possible.\nVue JS is a very fast and lightweight frontend framework by design, but there are certain coding decisions that you could be making that are slowing down your app. Remember that every second wasted on loading affects your user’s experience.\n\nVue.js is the newest JavaScript library, which is fast gaining popularity among web developers worldwide. Perhaps because of this novelty, it is still quite common to run into performance issues when using it for building applications. The majority of them, however, can be resolved quite easily.\nIn this guide, we will go over the key things to have in mind when creating a Vue.js-based application to achieve optimal performance.\nWhy is Vue.js gaining popularity so fast? It does have some competition in the form of Angular and React - more mature frameworks. In fact, the discussion of Vue.js vs React vs Angular seems to have no end. And in fairness, every one of the three JavaScript frameworks can be a good choice for building frontend solutions.\nAngular is considered the go-to option when we are dealing with large enterprise-scale projects. React is praised due to its extended ecosystem. Vue.js is often seen as the lightest and the most developer-friendly choice.\nHowever, there is no room for uncertain decision-making when it comes to selecting a tech stack. These common opinions may be a good indication, but the final choice is dependent on your particular scenario.\nAs Vue Storefront is based on - you guessed it - Vue.js, this is the option we advocate for. Here, we will go over why that is, which use cases it suits, and how to make the most of it, so your eCommerce store runs at its best.'
 })
+const share = () => {
+  if (navigator.share) {
+    navigator
+      .share({
+        text: article.title,
+        url: window.location.href
+      })
+      .then(() => {
+        console.log('Thanks for sharing!')
+      })
+      .catch(console.error('error!'))
+  } else {
+    alert(
+      'The current browser does not support the share function. Please, manually share the link'
+    )
+  }
+}
 
 const isReadingMode = ref(false)
 let textSize = ref(2)
