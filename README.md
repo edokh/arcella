@@ -12,6 +12,14 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
+### Clone the project
+
+```sh
+git clone https://github.com/edokh/arcella.git
+```
+
+### After cloning the project run the following command
+
 ```sh
 npm install
 ```

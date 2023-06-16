@@ -164,7 +164,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onBeforeMount } from 'vue'
+import { ref, reactive, onBeforeMount } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()
