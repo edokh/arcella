@@ -40,7 +40,7 @@
               @click="share"
               type="button"
               id="shareBtn"
-              class="transition duration-500 dark:hover:bg-gray-600 mr-2 inline-flex items-center rounded-xl bg-[#e4dcd1] px-3 py-1.5 font-semibold hover:bg-[#D4CCC2] dark:bg-gray-700 dark:text-gray-200"
+              class="transition duration-500 h-full dark:hover:bg-gray-600 mr-2 inline-flex items-center rounded-xl bg-[#e4dcd1] px-3 py-1.5 font-semibold hover:bg-[#D4CCC2] dark:bg-gray-700 dark:text-gray-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
