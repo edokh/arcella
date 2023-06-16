@@ -10,7 +10,7 @@
           <span
             v-for="tag in article.tags"
             :key="tag"
-            class="px-2 py-1 mr-1 text-xs bg-[#b03337] text-white dark:bg-red-300 dark:text-gray-800"
+            class="px-2 py-1 mr-1 text-xs bg-[#b03337] text-white dark:bg-red-900 dark:text-gray-300"
             >{{ tag }}</span
           >
         </div>
